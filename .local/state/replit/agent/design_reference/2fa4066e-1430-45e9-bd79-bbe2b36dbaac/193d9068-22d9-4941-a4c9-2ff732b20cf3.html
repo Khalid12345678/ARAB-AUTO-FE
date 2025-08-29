@@ -1,0 +1,1198 @@
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARAB AUTO - Sky is the Limit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    colors: {
+                        background: "var(--background)",
+                        foreground: "var(--foreground)",
+                        card: {
+                            DEFAULT: "var(--card)",
+                            foreground: "var(--card-foreground)",
+                        },
+                        popover: {
+                            DEFAULT: "var(--popover)",
+                            foreground: "var(--popover-foreground)",
+                        },
+                        primary: {
+                            DEFAULT: "var(--primary)",
+                            foreground: "var(--primary-foreground)",
+                        },
+                        secondary: {
+                            DEFAULT: "var(--secondary)",
+                            foreground: "var(--secondary-foreground)",
+                        },
+                        muted: {
+                            DEFAULT: "var(--muted)",
+                            foreground: "var(--muted-foreground)",
+                        },
+                        accent: {
+                            DEFAULT: "var(--accent)",
+                            foreground: "var(--accent-foreground)",
+                        },
+                        destructive: {
+                            DEFAULT: "var(--destructive)",
+                            foreground: "var(--destructive-foreground)",
+                        },
+                        border: "var(--border)",
+                        input: "var(--input)",
+                        ring: "var(--ring)",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "Noto Sans Arabic", "system-ui", "sans-serif"],
+                    }
+                },
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --background: hsl(0 0% 100%);
+            --foreground: hsl(215 28% 17%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(215 28% 17%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(215 28% 17%);
+            --primary: hsl(355 87% 47%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(210 40% 96%);
+            --secondary-foreground: hsl(215 28% 17%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(215 20% 65%);
+            --accent: hsl(45 93% 58%);
+            --accent-foreground: hsl(215 28% 17%);
+            --destructive: hsl(0 84% 60%);
+            --destructive-foreground: hsl(0 0% 100%);
+            --border: hsl(214 32% 91%);
+            --input: hsl(214 32% 91%);
+            --ring: hsl(355 87% 47%);
+            --radius: 12px;
+        }
+
+        .dark {
+            --background: hsl(222 84% 5%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222 84% 5%);
+            --card-foreground: hsl(210 40% 98%);
+            --popover: hsl(222 84% 5%);
+            --popover-foreground: hsl(210 40% 98%);
+            --primary: hsl(355 87% 47%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(217 32% 17%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(217 32% 17%);
+            --muted-foreground: hsl(215 20% 65%);
+            --accent: hsl(45 93% 58%);
+            --accent-foreground: hsl(215 28% 17%);
+            --destructive: hsl(0 62% 30%);
+            --destructive-foreground: hsl(0 0% 100%);
+            --border: hsl(217 32% 17%);
+            --input: hsl(217 32% 17%);
+            --ring: hsl(355 87% 47%);
+        }
+
+        * {
+            border-color: hsl(var(--border));
+        }
+
+        body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: var(--font-sans);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(355 87% 35%) 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .arabic-text {
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+
+        .car-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .nav-link.active {
+            color: hsl(var(--primary));
+            border-bottom: 2px solid hsl(var(--primary));
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-car text-primary-foreground text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-foreground">ARAB AUTO</h1>
+                        <p class="text-xs text-muted-foreground">Sky is the Limit</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="showPage('home')" class="nav-link px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors active">
+                        <span class="english-text">Home</span>
+                        <span class="arabic-text hidden">الرئيسية</span>
+                    </button>
+                    <button onclick="showPage('listings')" class="nav-link px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                        <span class="english-text">Cars</span>
+                        <span class="arabic-text hidden">السيارات</span>
+                    </button>
+                    <button onclick="showPage('about')" class="nav-link px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                        <span class="english-text">About</span>
+                        <span class="arabic-text hidden">عنا</span>
+                    </button>
+                    <button onclick="showPage('contact')" class="nav-link px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
+                        <span class="english-text">Contact</span>
+                        <span class="arabic-text hidden">اتصل بنا</span>
+                    </button>
+                </div>
+
+                <!-- Language Toggle & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground rounded-md hover:bg-muted transition-colors">
+                        <span class="english-text">AR</span>
+                        <span class="arabic-text hidden">EN</span>
+                    </button>
+                    <button class="md:hidden text-foreground hover:text-primary">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Home Page -->
+        <section id="home" class="page-section active">
+            <!-- Hero Section -->
+            <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <!-- Background with uploaded image -->
+                <div class="absolute inset-0 z-0">
+                    <div class="w-full h-full bg-gradient-to-r from-primary/90 to-primary/70"></div>
+                    <div class="absolute inset-0 bg-black/20"></div>
+                </div>
+                
+                <div class="relative z-10 text-center text-white px-4 animate-fade-in-up">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                        <span class="english-text">ARAB AUTO</span>
+                        <span class="arabic-text hidden">عرب أوتو</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-white/90">
+                        <span class="english-text">Sky is the Limit</span>
+                        <span class="arabic-text hidden">السماء هي الحد</span>
+                    </p>
+                    <p class="text-lg mb-12 max-w-2xl mx-auto text-white/80">
+                        <span class="english-text">Discover premium luxury vehicles with exceptional quality and unmatched performance. Your dream car awaits.</span>
+                        <span class="arabic-text hidden">اكتشف السيارات الفاخرة المتميزة بجودة استثنائية وأداء لا يضاهى. سيارة أحلامك في انتظارك.</span>
+                    </p>
+                    <button onclick="showPage('listings')" class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/90 transition-all transform hover:scale-105 shadow-lg">
+                        <span class="english-text">Explore Cars</span>
+                        <span class="arabic-text hidden">استكشف السيارات</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Floating Car Cards -->
+                <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden lg:flex space-x-6">
+                    <!-- BMW X6 from uploaded images -->
+                    <div class="car-card p-4 rounded-xl shadow-lg w-64 animate-slide-in">
+                        <div class="w-full h-32 bg-gray-200 rounded-lg mb-3 overflow-hidden">
+                            <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center">
+                                <i class="fas fa-car text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-foreground">BMW X6 2024</h3>
+                        <p class="text-sm text-muted-foreground">From $75,000</p>
+                    </div>
+                    
+                    <div class="car-card p-4 rounded-xl shadow-lg w-64 animate-slide-in" style="animation-delay: 0.2s">
+                        <div class="w-full h-32 bg-gray-200 rounded-lg mb-3 overflow-hidden">
+                            <div class="w-full h-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
+                                <i class="fas fa-car text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-foreground">Chevrolet Camaro</h3>
+                        <p class="text-sm text-muted-foreground">From $45,000</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Cars Section -->
+            <section class="py-20 bg-secondary/50">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-foreground mb-4">
+                            <span class="english-text">Featured Vehicles</span>
+                            <span class="arabic-text hidden">السيارات المميزة</span>
+                        </h2>
+                        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                            <span class="english-text">Discover our handpicked selection of premium vehicles</span>
+                            <span class="arabic-text hidden">اكتشف مجموعتنا المختارة بعناية من السيارات المتميزة</span>
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Car Card 1 - Toyota Corolla -->
+                        <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                            <!-- Professional Toyota Corolla sedan in modern showroom setting -->
+                            <img src="https://pixabay.com/get/gc1de6361c79a3dafabfa8ca81a5f1ba4ce565e71e0d5c9bdd41c759ffb1f37b9acb4b9edd43182cf207663235ecb759a831980da86162d1365dd045c77786593_1280.jpg" alt="Toyota Corolla" class="w-full h-48 object-cover"/>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Toyota Corolla 2024</h3>
+                                <p class="text-muted-foreground mb-4">
+                                    <span class="english-text">Reliable and efficient sedan</span>
+                                    <span class="arabic-text hidden">سيدان موثوق وفعال</span>
+                                </p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-primary">$25,000</span>
+                                    <div class="flex space-x-2">
+                                        <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                        <span class="bg-secondary px-2 py-1 rounded text-xs">2024</span>
+                                    </div>
+                                </div>
+                                <button onclick="showCarDetails('corolla')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                    <span class="english-text">View Details</span>
+                                    <span class="arabic-text hidden">عرض التفاصيل</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Car Card 2 - BMW Series -->
+                        <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                            <!-- Luxury BMW sedan in elegant setting with premium lighting -->
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="BMW 3 Series" class="w-full h-48 object-cover"/>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">BMW 3 Series</h3>
+                                <p class="text-muted-foreground mb-4">
+                                    <span class="english-text">Luxury performance sedan</span>
+                                    <span class="arabic-text hidden">سيدان فاخر عالي الأداء</span>
+                                </p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-primary">$55,000</span>
+                                    <div class="flex space-x-2">
+                                        <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                        <span class="bg-secondary px-2 py-1 rounded text-xs">2024</span>
+                                    </div>
+                                </div>
+                                <button onclick="showCarDetails('bmw')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                    <span class="english-text">View Details</span>
+                                    <span class="arabic-text hidden">عرض التفاصيل</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Car Card 3 - Mercedes -->
+                        <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                            <!-- Premium Mercedes-Benz luxury vehicle in upscale environment -->
+                            <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Mercedes-Benz" class="w-full h-48 object-cover"/>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Mercedes-Benz C-Class</h3>
+                                <p class="text-muted-foreground mb-4">
+                                    <span class="english-text">Ultimate luxury experience</span>
+                                    <span class="arabic-text hidden">تجربة الفخامة المطلقة</span>
+                                </p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-primary">$68,000</span>
+                                    <div class="flex space-x-2">
+                                        <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                        <span class="bg-secondary px-2 py-1 rounded text-xs">2024</span>
+                                    </div>
+                                </div>
+                                <button onclick="showCarDetails('mercedes')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                    <span class="english-text">View Details</span>
+                                    <span class="arabic-text hidden">عرض التفاصيل</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="py-20 bg-background">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-foreground mb-4">
+                            <span class="english-text">Why Choose Arab Auto</span>
+                            <span class="arabic-text hidden">لماذا تختار عرب أوتو</span>
+                        </h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-award text-primary-foreground text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">
+                                <span class="english-text">Premium Quality</span>
+                                <span class="arabic-text hidden">جودة متميزة</span>
+                            </h3>
+                            <p class="text-muted-foreground">
+                                <span class="english-text">Only the finest vehicles with comprehensive inspections</span>
+                                <span class="arabic-text hidden">أفضل المركبات مع فحوصات شاملة</span>
+                            </p>
+                        </div>
+                        
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-shield-alt text-primary-foreground text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">
+                                <span class="english-text">Trusted Service</span>
+                                <span class="arabic-text hidden">خدمة موثوقة</span>
+                            </h3>
+                            <p class="text-muted-foreground">
+                                <span class="english-text">Years of experience with thousands of satisfied customers</span>
+                                <span class="arabic-text hidden">سنوات من الخبرة مع آلاف العملاء الراضين</span>
+                            </p>
+                        </div>
+                        
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-handshake text-primary-foreground text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">
+                                <span class="english-text">Best Deals</span>
+                                <span class="arabic-text hidden">أفضل العروض</span>
+                            </h3>
+                            <p class="text-muted-foreground">
+                                <span class="english-text">Competitive pricing with flexible financing options</span>
+                                <span class="arabic-text hidden">أسعار تنافسية مع خيارات تمويل مرنة</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Car Listings Page -->
+        <section id="listings" class="page-section py-20">
+            <div class="container mx-auto px-4">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-foreground mb-4">
+                        <span class="english-text">Our Car Collection</span>
+                        <span class="arabic-text hidden">مجموعة سياراتنا</span>
+                    </h1>
+                    <p class="text-lg text-muted-foreground">
+                        <span class="english-text">Browse through our premium selection of vehicles</span>
+                        <span class="arabic-text hidden">تصفح مجموعتنا المتميزة من المركبات</span>
+                    </p>
+                </div>
+
+                <!-- Filters -->
+                <div class="bg-card p-6 rounded-lg shadow-lg mb-8">
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <span class="english-text">Brand</span>
+                                <span class="arabic-text hidden">الماركة</span>
+                            </label>
+                            <select class="w-full p-2 border border-border rounded-lg">
+                                <option>All Brands</option>
+                                <option>Toyota</option>
+                                <option>BMW</option>
+                                <option>Mercedes-Benz</option>
+                                <option>Chevrolet</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <span class="english-text">Price Range</span>
+                                <span class="arabic-text hidden">النطاق السعري</span>
+                            </label>
+                            <select class="w-full p-2 border border-border rounded-lg">
+                                <option>All Prices</option>
+                                <option>$20,000 - $40,000</option>
+                                <option>$40,000 - $60,000</option>
+                                <option>$60,000+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <span class="english-text">Year</span>
+                                <span class="arabic-text hidden">السنة</span>
+                            </label>
+                            <select class="w-full p-2 border border-border rounded-lg">
+                                <option>All Years</option>
+                                <option>2024</option>
+                                <option>2023</option>
+                                <option>2022</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">Apply Filters</span>
+                                <span class="arabic-text hidden">تطبيق الفلاتر</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Car 1 - Toyota Hilux -->
+                    <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                        <!-- Professional Toyota Hilux pickup truck in outdoor setting -->
+                        <img src="https://images.unsplash.com/photo-1566473965997-3de9c817e938?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Toyota Hilux" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Toyota Hilux 2024</h3>
+                            <p class="text-muted-foreground mb-4">
+                                <span class="english-text">Powerful pickup truck</span>
+                                <span class="arabic-text hidden">شاحنة قوية</span>
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-2xl font-bold text-primary">$45,000</span>
+                                <div class="flex space-x-2">
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Manual</span>
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">4WD</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                                <div><i class="fas fa-tachometer-alt mr-1"></i> 30k km</div>
+                                <div><i class="fas fa-gas-pump mr-1"></i> Diesel</div>
+                                <div><i class="fas fa-calendar mr-1"></i> 2024</div>
+                            </div>
+                            <button onclick="showCarDetails('hilux')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">View Details</span>
+                                <span class="arabic-text hidden">عرض التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Car 2 - Chevrolet Camaro -->
+                    <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                        <!-- Red Chevrolet Camaro sports car in dynamic pose -->
+                        <img src="https://pixabay.com/get/g46742f901b6f267b2048145d8f6b40ef72c016ce83c8feb2c0877c7d8e215da27d31a23e155f5019f567460628af4468d742a4de4121f554de21a5876f3d46de_1280.jpg" alt="Chevrolet Camaro" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Chevrolet Camaro</h3>
+                            <p class="text-muted-foreground mb-4">
+                                <span class="english-text">American muscle car</span>
+                                <span class="arabic-text hidden">سيارة عضلية أمريكية</span>
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-2xl font-bold text-primary">$48,000</span>
+                                <div class="flex space-x-2">
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">V8</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                                <div><i class="fas fa-tachometer-alt mr-1"></i> 15k km</div>
+                                <div><i class="fas fa-gas-pump mr-1"></i> Petrol</div>
+                                <div><i class="fas fa-calendar mr-1"></i> 2023</div>
+                            </div>
+                            <button onclick="showCarDetails('camaro')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">View Details</span>
+                                <span class="arabic-text hidden">عرض التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Car 3 - Audi A4 -->
+                    <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                        <!-- Elegant Audi A4 luxury sedan in professional setting -->
+                        <img src="https://pixabay.com/get/g3c7c1f910ca79a5089c55d5cecba1fc7875b4f100fa50d3a864a099c6c8efd0f2eface187acc51967ea25933289bc4395d8bec201d148f87508131482bc9b8ee_1280.jpg" alt="Audi A4" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Audi A4 2024</h3>
+                            <p class="text-muted-foreground mb-4">
+                                <span class="english-text">German engineering excellence</span>
+                                <span class="arabic-text hidden">التميز الهندسي الألماني</span>
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-2xl font-bold text-primary">$52,000</span>
+                                <div class="flex space-x-2">
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">AWD</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                                <div><i class="fas fa-tachometer-alt mr-1"></i> 8k km</div>
+                                <div><i class="fas fa-gas-pump mr-1"></i> Petrol</div>
+                                <div><i class="fas fa-calendar mr-1"></i> 2024</div>
+                            </div>
+                            <button onclick="showCarDetails('audi')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">View Details</span>
+                                <span class="arabic-text hidden">عرض التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Car 4 - Range Rover -->
+                    <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                        <!-- Luxury Range Rover SUV in premium environment -->
+                        <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Range Rover" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Range Rover Evoque</h3>
+                            <p class="text-muted-foreground mb-4">
+                                <span class="english-text">Luxury compact SUV</span>
+                                <span class="arabic-text hidden">دفع رباعي فاخر مدمج</span>
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-2xl font-bold text-primary">$65,000</span>
+                                <div class="flex space-x-2">
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">4WD</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                                <div><i class="fas fa-tachometer-alt mr-1"></i> 20k km</div>
+                                <div><i class="fas fa-gas-pump mr-1"></i> Petrol</div>
+                                <div><i class="fas fa-calendar mr-1"></i> 2023</div>
+                            </div>
+                            <button onclick="showCarDetails('evoque')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">View Details</span>
+                                <span class="arabic-text hidden">عرض التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Car 5 - Tesla Model S -->
+                    <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                        <!-- Sleek Tesla Model S electric luxury sedan -->
+                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Tesla Model S" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Tesla Model S</h3>
+                            <p class="text-muted-foreground mb-4">
+                                <span class="english-text">Electric luxury performance</span>
+                                <span class="arabic-text hidden">أداء فاخر كهربائي</span>
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-2xl font-bold text-primary">$85,000</span>
+                                <div class="flex space-x-2">
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Electric</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                                <div><i class="fas fa-tachometer-alt mr-1"></i> 12k km</div>
+                                <div><i class="fas fa-bolt mr-1"></i> Electric</div>
+                                <div><i class="fas fa-calendar mr-1"></i> 2024</div>
+                            </div>
+                            <button onclick="showCarDetails('tesla')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">View Details</span>
+                                <span class="arabic-text hidden">عرض التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Car 6 - Lexus ES -->
+                    <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
+                        <!-- Premium Lexus ES luxury sedan in elegant showroom -->
+                        <img src="https://pixabay.com/get/g1f127176ad012ca67eec988ab940c4145cd8884c96f052633d7fa67d37fdc75570d56ecba9bab5e6e8044a81c9c2475c00e9629e439107597dddb99a6f065d01_1280.jpg" alt="Lexus ES" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Lexus ES 350</h3>
+                            <p class="text-muted-foreground mb-4">
+                                <span class="english-text">Japanese luxury refinement</span>
+                                <span class="arabic-text hidden">الفخامة اليابانية المصقولة</span>
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-2xl font-bold text-primary">$58,000</span>
+                                <div class="flex space-x-2">
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">Auto</span>
+                                    <span class="bg-secondary px-2 py-1 rounded text-xs">FWD</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                                <div><i class="fas fa-tachometer-alt mr-1"></i> 18k km</div>
+                                <div><i class="fas fa-gas-pump mr-1"></i> Hybrid</div>
+                                <div><i class="fas fa-calendar mr-1"></i> 2023</div>
+                            </div>
+                            <button onclick="showCarDetails('lexus')" class="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                <span class="english-text">View Details</span>
+                                <span class="arabic-text hidden">عرض التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page-section py-20">
+            <div class="container mx-auto px-4">
+                <!-- Hero Section -->
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl font-bold text-foreground mb-4">
+                        <span class="english-text">About Arab Auto</span>
+                        <span class="arabic-text hidden">عن عرب أوتو</span>
+                    </h1>
+                    <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
+                        <span class="english-text">Your trusted partner in finding the perfect vehicle. With years of experience and thousands of satisfied customers, we're committed to excellence.</span>
+                        <span class="arabic-text hidden">شريكك الموثوق في العثور على المركبة المثالية. مع سنوات من الخبرة وآلاف العملاء الراضين، نحن ملتزمون بالتميز.</span>
+                    </p>
+                </div>
+
+                <!-- Story Section -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                    <div>
+                        <!-- Professional car showroom interior with modern lighting and luxury vehicles -->
+                        <img src="https://pixabay.com/get/g7f193d0e902e0f2e7b60886d230d85a5e02ef99df43acaee87374b99368000a84443e69aecd4d8fa992dbec8d5dd9aa562574625f37563360eff131a99077c56_1280.jpg" alt="Arab Auto Showroom" class="rounded-lg shadow-lg w-full"/>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-foreground mb-6">
+                            <span class="english-text">Our Story</span>
+                            <span class="arabic-text hidden">قصتنا</span>
+                        </h2>
+                        <p class="text-muted-foreground mb-4">
+                            <span class="english-text">Founded with a vision to revolutionize the automotive industry in the Arab world, Arab Auto has grown from a small dealership to a leading automotive destination.</span>
+                            <span class="arabic-text hidden">تأسست برؤية لثورة في صناعة السيارات في العالم العربي، نمت عرب أوتو من وكالة صغيرة إلى وجهة سيارات رائدة.</span>
+                        </p>
+                        <p class="text-muted-foreground mb-6">
+                            <span class="english-text">We pride ourselves on offering only the finest vehicles, exceptional customer service, and building long-lasting relationships with our clients.</span>
+                            <span class="arabic-text hidden">نفخر بتقديم أفضل المركبات فقط، وخدمة عملاء استثنائية، وبناء علاقات طويلة الأمد مع عملائنا.</span>
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-secondary rounded-lg">
+                                <div class="text-2xl font-bold text-primary">15+</div>
+                                <div class="text-sm text-muted-foreground">
+                                    <span class="english-text">Years Experience</span>
+                                    <span class="arabic-text hidden">سنوات خبرة</span>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 bg-secondary rounded-lg">
+                                <div class="text-2xl font-bold text-primary">5000+</div>
+                                <div class="text-sm text-muted-foreground">
+                                    <span class="english-text">Happy Customers</span>
+                                    <span class="arabic-text hidden">عملاء سعداء</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="grid md:grid-cols-2 gap-8 mb-20">
+                    <div class="bg-card p-8 rounded-lg shadow-lg">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-eye text-primary-foreground text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span class="english-text">Our Vision</span>
+                            <span class="arabic-text hidden">رؤيتنا</span>
+                        </h3>
+                        <p class="text-muted-foreground">
+                            <span class="english-text">To be the leading automotive destination in the Arab world, known for excellence, trust, and innovation in everything we do.</span>
+                            <span class="arabic-text hidden">أن نكون الوجهة السيارات الرائدة في العالم العربي، معروفين بالتميز والثقة والابتكار في كل ما نقوم به.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-card p-8 rounded-lg shadow-lg">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-bullseye text-primary-foreground text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span class="english-text">Our Mission</span>
+                            <span class="arabic-text hidden">مهمتنا</span>
+                        </h3>
+                        <p class="text-muted-foreground">
+                            <span class="english-text">To provide exceptional automotive solutions with unmatched customer service, helping our clients find their perfect vehicle.</span>
+                            <span class="arabic-text hidden">تقديم حلول سيارات استثنائية مع خدمة عملاء لا مثيل لها، مساعدة عملائنا في العثور على مركبتهم المثالية.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Team Section -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-foreground mb-4">
+                        <span class="english-text">Meet Our Team</span>
+                        <span class="arabic-text hidden">تعرف على فريقنا</span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <!-- Professional business executive in formal attire -->
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="CEO" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"/>
+                        <h3 class="text-xl font-semibold mb-2">Ahmed Al-Rashid</h3>
+                        <p class="text-muted-foreground mb-2">
+                            <span class="english-text">CEO & Founder</span>
+                            <span class="arabic-text hidden">الرئيس التنفيذي والمؤسس</span>
+                        </p>
+                        <p class="text-sm text-muted-foreground">
+                            <span class="english-text">Leading Arab Auto with vision and passion for automotive excellence.</span>
+                            <span class="arabic-text hidden">يقود عرب أوتو برؤية وشغف لتميز السيارات.</span>
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <!-- Professional businesswoman in corporate setting -->
+                        <img src="https://pixabay.com/get/g7bcf2f331bd85b16820b71631f9b94efa2435cfe5c3502c33ddf47ac3b409dd4d4c7133d724ffb34f0f3a2a38b559e372df4e2ad0735f67612940149f0545ecd_1280.jpg" alt="Sales Director" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"/>
+                        <h3 class="text-xl font-semibold mb-2">Sarah Al-Zahra</h3>
+                        <p class="text-muted-foreground mb-2">
+                            <span class="english-text">Sales Director</span>
+                            <span class="arabic-text hidden">مديرة المبيعات</span>
+                        </p>
+                        <p class="text-sm text-muted-foreground">
+                            <span class="english-text">Expert in luxury automotive sales with over 10 years of experience.</span>
+                            <span class="arabic-text hidden">خبيرة في مبيعات السيارات الفاخرة مع أكثر من 10 سنوات خبرة.</span>
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <!-- Professional automotive technician or service manager -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Service Manager" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"/>
+                        <h3 class="text-xl font-semibold mb-2">Omar Al-Mansouri</h3>
+                        <p class="text-muted-foreground mb-2">
+                            <span class="english-text">Service Manager</span>
+                            <span class="arabic-text hidden">مدير الخدمة</span>
+                        </p>
+                        <p class="text-sm text-muted-foreground">
+                            <span class="english-text">Ensuring every customer receives exceptional service and support.</span>
+                            <span class="arabic-text hidden">يضمن حصول كل عميل على خدمة ودعم استثنائي.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page-section py-20">
+            <div class="container mx-auto px-4">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl font-bold text-foreground mb-4">
+                        <span class="english-text">Contact Us</span>
+                        <span class="arabic-text hidden">اتصل بنا</span>
+                    </h1>
+                    <p class="text-lg text-muted-foreground">
+                        <span class="english-text">Get in touch with our team. We're here to help you find your perfect vehicle.</span>
+                        <span class="arabic-text hidden">تواصل مع فريقنا. نحن هنا لمساعدتك في العثور على مركبتك المثالية.</span>
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="bg-card p-8 rounded-lg shadow-lg">
+                        <h2 class="text-2xl font-bold mb-6">
+                            <span class="english-text">Send us a Message</span>
+                            <span class="arabic-text hidden">أرسل لنا رسالة</span>
+                        </h2>
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">
+                                        <span class="english-text">First Name</span>
+                                        <span class="arabic-text hidden">الاسم الأول</span>
+                                    </label>
+                                    <input type="text" class="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="John"/>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">
+                                        <span class="english-text">Last Name</span>
+                                        <span class="arabic-text hidden">اسم العائلة</span>
+                                    </label>
+                                    <input type="text" class="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Doe"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">
+                                    <span class="english-text">Email</span>
+                                    <span class="arabic-text hidden">البريد الإلكتروني</span>
+                                </label>
+                                <input type="email" class="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="john@example.com"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">
+                                    <span class="english-text">Phone</span>
+                                    <span class="arabic-text hidden">الهاتف</span>
+                                </label>
+                                <input type="tel" class="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="+971 50 123 4567"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">
+                                    <span class="english-text">Interested In</span>
+                                    <span class="arabic-text hidden">مهتم بـ</span>
+                                </label>
+                                <select class="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option>Select a car type</option>
+                                    <option>Luxury Sedan</option>
+                                    <option>SUV</option>
+                                    <option>Sports Car</option>
+                                    <option>Pickup Truck</option>
+                                    <option>Electric Vehicle</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">
+                                    <span class="english-text">Message</span>
+                                    <span class="arabic-text hidden">الرسالة</span>
+                                </label>
+                                <textarea rows="4" class="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tell us about your requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:bg-primary/90 transition-colors font-semibold">
+                                <span class="english-text">Send Message</span>
+                                <span class="arabic-text hidden">إرسال الرسالة</span>
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="space-y-8">
+                        <!-- Contact Details -->
+                        <div class="bg-card p-8 rounded-lg shadow-lg">
+                            <h2 class="text-2xl font-bold mb-6">
+                                <span class="english-text">Get in Touch</span>
+                                <span class="arabic-text hidden">تواصل معنا</span>
+                            </h2>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone text-primary-foreground"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-2">
+                                            <span class="english-text">Phone</span>
+                                            <span class="arabic-text hidden">الهاتف</span>
+                                        </h3>
+                                        <p class="text-muted-foreground">01070007436</p>
+                                        <p class="text-muted-foreground">01070007485</p>
+                                        <p class="text-muted-foreground">01070007435</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-primary-foreground"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-2">
+                                            <span class="english-text">Email</span>
+                                            <span class="arabic-text hidden">البريد الإلكتروني</span>
+                                        </h3>
+                                        <p class="text-muted-foreground">info@arabauto.com</p>
+                                        <p class="text-muted-foreground">sales@arabauto.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-primary-foreground"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-2">
+                                            <span class="english-text">Location</span>
+                                            <span class="arabic-text hidden">الموقع</span>
+                                        </h3>
+                                        <p class="text-muted-foreground">
+                                            <span class="english-text">Eastern Ring Road, Al-Sharqiya<br/>Car Showroom Complex</span>
+                                            <span class="arabic-text hidden">طريق الدائري الشرقي، الشرقية<br/>مجمع معارض السيارات</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-clock text-primary-foreground"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-2">
+                                            <span class="english-text">Business Hours</span>
+                                            <span class="arabic-text hidden">ساعات العمل</span>
+                                        </h3>
+                                        <p class="text-muted-foreground">
+                                            <span class="english-text">Saturday - Thursday: 9:00 AM - 9:00 PM<br/>Friday: 2:00 PM - 9:00 PM</span>
+                                            <span class="arabic-text hidden">السبت - الخميس: 9:00 ص - 9:00 م<br/>الجمعة: 2:00 م - 9:00 م</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map Placeholder -->
+                        <div class="bg-card p-8 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold mb-4">
+                                <span class="english-text">Find Us</span>
+                                <span class="arabic-text hidden">ابحث عنا</span>
+                            </h3>
+                            <!-- Map of Middle Eastern city with automotive district markers -->
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=300" alt="Location Map" class="w-full h-48 object-cover rounded-lg"/>
+                            <div class="mt-4">
+                                <button class="w-full bg-secondary text-secondary-foreground py-2 rounded-lg hover:bg-muted transition-colors">
+                                    <span class="english-text">Get Directions</span>
+                                    <span class="arabic-text hidden">احصل على الاتجاهات</span>
+                                    <i class="fas fa-external-link-alt ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-foreground text-background py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-car text-primary-foreground text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold">ARAB AUTO</h1>
+                            <p class="text-xs text-background/70">Sky is the Limit</p>
+                        </div>
+                    </div>
+                    <p class="text-background/70 text-sm">
+                        <span class="english-text">Your trusted partner in finding the perfect luxury vehicle in the Arab world.</span>
+                        <span class="arabic-text hidden">شريكك الموثوق في العثور على المركبة الفاخرة المثالية في العالم العربي.</span>
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span class="english-text">Quick Links</span>
+                        <span class="arabic-text hidden">روابط سريعة</span>
+                    </h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="showPage('home')" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Home</span>
+                            <span class="arabic-text hidden">الرئيسية</span>
+                        </a></li>
+                        <li><a href="#" onclick="showPage('listings')" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Cars</span>
+                            <span class="arabic-text hidden">السيارات</span>
+                        </a></li>
+                        <li><a href="#" onclick="showPage('about')" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">About Us</span>
+                            <span class="arabic-text hidden">عنا</span>
+                        </a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Contact</span>
+                            <span class="arabic-text hidden">اتصل بنا</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span class="english-text">Services</span>
+                        <span class="arabic-text hidden">الخدمات</span>
+                    </h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Car Sales</span>
+                            <span class="arabic-text hidden">مبيعات السيارات</span>
+                        </a></li>
+                        <li><a href="#" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Financing</span>
+                            <span class="arabic-text hidden">التمويل</span>
+                        </a></li>
+                        <li><a href="#" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Trade-in</span>
+                            <span class="arabic-text hidden">استبدال</span>
+                        </a></li>
+                        <li><a href="#" class="text-background/70 hover:text-background transition-colors">
+                            <span class="english-text">Service & Maintenance</span>
+                            <span class="arabic-text hidden">الخدمة والصيانة</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span class="english-text">Contact</span>
+                        <span class="arabic-text hidden">اتصل</span>
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-background/70">
+                            <i class="fas fa-phone mr-2"></i>
+                            01070007436
+                        </p>
+                        <p class="text-background/70">
+                            <i class="fas fa-envelope mr-2"></i>
+                            info@arabauto.com
+                        </p>
+                        <p class="text-background/70">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span class="english-text">Al-Sharqiya, Car Complex</span>
+                            <span class="arabic-text hidden">الشرقية، مجمع السيارات</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-background/20 mt-8 pt-8 text-center">
+                <p class="text-background/70 text-sm">
+                    <span class="english-text">&copy; 2024 Arab Auto. All rights reserved. | Sky is the Limit</span>
+                    <span class="arabic-text hidden">&copy; 2024 عرب أوتو. جميع الحقوق محفوظة. | السماء هي الحد</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            let currentLanguage = 'en';
+            
+            // Navigation and page switching
+            function showPage(pageId) {
+                // Hide all pages
+                const pages = document.querySelectorAll('.page-section');
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Show selected page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    targetPage.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Update navigation
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => link.classList.remove('active'));
+                event.target.classList.add('active');
+            }
+            
+            // Language switching
+            function toggleLanguage() {
+                currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+                
+                const html = document.documentElement;
+                const englishElements = document.querySelectorAll('.english-text');
+                const arabicElements = document.querySelectorAll('.arabic-text');
+                
+                if (currentLanguage === 'ar') {
+                    html.setAttribute('lang', 'ar');
+                    html.setAttribute('dir', 'rtl');
+                    
+                    englishElements.forEach(el => el.classList.add('hidden'));
+                    arabicElements.forEach(el => el.classList.remove('hidden'));
+                } else {
+                    html.setAttribute('lang', 'en');
+                    html.setAttribute('dir', 'ltr');
+                    
+                    englishElements.forEach(el => el.classList.remove('hidden'));
+                    arabicElements.forEach(el => el.classList.add('hidden'));
+                }
+            }
+            
+            // Car details modal (placeholder)
+            function showCarDetails(carId) {
+                // TODO: Implement car details modal or navigate to detailed page
+                alert(`Showing details for car: ${carId}`);
+            }
+            
+            // Form submission handling
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                // TODO: Implement form submission logic
+                alert('Form submitted successfully! We will contact you soon.');
+                return false;
+            }
+            
+            // Smooth animations on scroll
+            function observeElements() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-fade-in-up');
+                        }
+                    });
+                });
+                
+                const elementsToAnimate = document.querySelectorAll('.card-hover, .bg-card');
+                elementsToAnimate.forEach((el) => observer.observe(el));
+            }
+            
+            // Initialize
+            document.addEventListener('DOMContentLoaded', function() {
+                observeElements();
+                
+                // Add event listeners
+                const contactForm = document.querySelector('form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', handleFormSubmit);
+                }
+            });
+            
+            // Expose functions globally for onclick handlers
+            window.showPage = showPage;
+            window.toggleLanguage = toggleLanguage;
+            window.showCarDetails = showCarDetails;
+        })();
+    </script>
+</body>
+</html>
