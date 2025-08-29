@@ -10,13 +10,20 @@ export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
+    // Only load cartographer plugin if we're in development and have REPL_ID
+    ...(process.env.NODE_ENV !== "production" && process.env.REPL_ID
       ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
+          // Use dynamic import with error handling
+          (async () => {
+            try {
+              const { cartographer } = await import("@replit/vite-plugin-cartographer");
+              return cartographer();
+            } catch (error) {
+              console.warn("Cartographer plugin not available:", error.message);
+              return null;
+            }
+          })(),
+        ].filter(Boolean)
       : []),
   ],
   resolve: {
