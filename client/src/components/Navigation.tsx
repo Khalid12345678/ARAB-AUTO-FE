@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import logoImage from "@assets/arabauto_logo_1756464535928.jpg";
 
 export function Navigation() {
   const [location] = useLocation();
@@ -57,7 +58,7 @@ export function Navigation() {
           <Link href="/" className="flex items-center space-x-4 premium-hover" data-testid="link-logo">
             <div className="w-14 h-14 luxury-logo">
               <img 
-                src="@assets/arabauto_logo_1756464535928.jpg" 
+                src={logoImage} 
                 alt="Arab Auto Logo" 
                 className="w-full h-full object-contain rounded-xl"
               />
@@ -88,7 +89,7 @@ export function Navigation() {
                 <div className="flex flex-col space-y-6 mt-12">
                   <div className="flex items-center space-x-3 pb-6 border-b border-border/20">
                     <img 
-                      src="@assets/arabauto_logo_1756464535928.jpg" 
+                      src={logoImage} 
                       alt="Arab Auto" 
                       className="w-12 h-12 object-contain rounded-lg"
                     />

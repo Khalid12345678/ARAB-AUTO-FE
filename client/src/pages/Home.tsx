@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Award, Shield, Handshake } from "lucide-react";
 import { motion } from "framer-motion";
+import logoImage from "@assets/arabauto_logo_1756464535928.jpg";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -35,7 +36,7 @@ export default function Home() {
         >
           <div className="w-24 h-24 luxury-logo">
             <img 
-              src="@assets/arabauto_logo_1756464535928.jpg" 
+              src={logoImage} 
               alt="Arab Auto Logo" 
               className="w-full h-full object-contain rounded-2xl shadow-2xl"
             />

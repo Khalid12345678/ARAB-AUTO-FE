@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoImage from "@assets/arabauto_logo_1756464535928.jpg";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ export function Layout({ children }: LayoutProps) {
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12">
                   <img 
-                    src="@assets/arabauto_logo_1756464535928.jpg" 
+                    src={logoImage} 
                     alt="Arab Auto Logo" 
                     className="w-full h-full object-contain rounded-lg"
                   />
