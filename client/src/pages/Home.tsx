@@ -32,9 +32,9 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="absolute top-32 left-1/2 transform -translate-x-1/2 z-20 animate-luxury-float"
+          className="absolute top-24 right-8 z-20 animate-luxury-float hidden lg:block"
         >
-          <div className="w-24 h-24 luxury-logo">
+          <div className="w-20 h-20 luxury-logo">
             <img 
               src={logoImage} 
               alt="Arab Auto Logo" 
@@ -47,7 +47,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto"
+          className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto mt-8"
         >
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
