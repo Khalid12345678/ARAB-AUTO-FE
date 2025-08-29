@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/Navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
-import logoImage from "@assets/arabauto_logo_1756464535928.jpg";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -25,13 +24,13 @@ export function Layout({ children }: LayoutProps) {
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12">
                   <img 
-                    src={logoImage} 
+                    src="/assets/arabauto_logo_1756464535928.jpg" 
                     alt="Arab Auto Logo" 
                     className="w-full h-full object-contain rounded-lg"
                   />
                 </div>
                 <div>
-                  <h1 className="text-xl font-display font-bold">ARAB AUTO</h1>
+                  <h1 className="text-xl font-display font-bold text-primary">ARAB AUTO</h1>
                   <p className="text-sm text-background/70 luxury-tracking">{t('home.hero.tagline')}</p>
                 </div>
               </div>
@@ -84,7 +83,7 @@ export function Layout({ children }: LayoutProps) {
 
           <div className="border-t border-background/20 mt-8 pt-8 text-center">
             <p className="text-background/70 text-sm">
-              &copy; 2024 Arab Auto. جميع الحقوق محفوظة. | {t('home.hero.tagline')}
+              &copy; 2024 <span className="text-primary">Arab Auto</span>. جميع الحقوق محفوظة. | {t('home.hero.tagline')}
             </p>
           </div>
         </div>
