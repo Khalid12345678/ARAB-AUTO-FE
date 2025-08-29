@@ -1,54 +1,46 @@
 import { useParams, Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
-import { Car } from "@shared/schema";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Phone, Mail, MapPin, Gauge, Calendar, Zap, Fuel, Settings, Palette } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { 
+  Calendar, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Star, 
+  Shield, 
+  Clock,
+  Car,
+  Fuel,
+  Settings,
+  Palette,
+  CheckCircle,
+  ArrowLeft
+} from "lucide-react";
 import { motion } from "framer-motion";
+import { getCarById } from "@/data/cars";
 
 export default function CarDetails() {
   const { id } = useParams();
   const { t, language } = useLanguage();
-
-  const { data: car, isLoading, error } = useQuery<Car>({
-    queryKey: ['/api/cars', id],
-  });
-
-  if (isLoading) {
+  
+  // Use static car data instead of API call
+  const car = getCarById(Number(id));
+  
+  if (!car) {
     return (
-      <div className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="animate-pulse">
-            <div className="h-8 bg-muted rounded mb-8 w-48"></div>
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="h-96 bg-muted rounded"></div>
-              <div className="space-y-4">
-                <div className="h-8 bg-muted rounded"></div>
-                <div className="h-4 bg-muted rounded"></div>
-                <div className="h-32 bg-muted rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error || !car) {
-    return (
-      <div className="py-20">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-xl text-destructive" data-testid="text-car-not-found">
-            {t('common.error')}
-          </p>
-          <Link href="/cars">
-            <Button className="mt-4" data-testid="button-back-to-listings">
-              {t('details.backToListings')}
-            </Button>
-          </Link>
-        </div>
+      <div className="container mx-auto px-4 py-20 text-center">
+        <h1 className="text-2xl font-bold text-foreground mb-4">
+          {t('details.notFound.title')}
+        </h1>
+        <p className="text-muted-foreground mb-8">
+          {t('details.notFound.message')}
+        </p>
+        <Button asChild>
+          <a href="/cars">{t('details.notFound.backToList')}</a>
+        </Button>
       </div>
     );
   }
@@ -66,12 +58,12 @@ export default function CarDetails() {
   };
 
   const getFuelIcon = (fuelType: string) => {
-    if (fuelType === 'electric') return <Zap size={16} />;
+    if (fuelType === 'electric') return <CheckCircle size={16} />;
     return <Fuel size={16} />;
   };
 
   const specs = [
-    { icon: <Gauge size={16} />, label: t('details.mileage'), value: formatMileage(car.mileage || 0) },
+    { icon: <Car size={16} />, label: t('details.mileage'), value: formatMileage(car.mileage || 0) },
     { icon: getFuelIcon(car.fuelType), label: t('details.fuel'), value: car.fuelType },
     { icon: <Settings size={16} />, label: t('details.transmission'), value: car.transmission },
     { icon: <Calendar size={16} />, label: t('details.year'), value: car.year.toString() },

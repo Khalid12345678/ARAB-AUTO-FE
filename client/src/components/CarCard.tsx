@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Car } from "@shared/schema";
+import { Car } from "@/types/car";
 import { Link } from "wouter";
 import { Gauge, Calendar, Zap } from "lucide-react";
 
@@ -44,13 +44,13 @@ export function CarCard({ car }: CarCardProps) {
           </div>
         )}
         {car.isFeatured && (
-          <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground shadow-lg border-0 px-3 py-1 text-sm font-semibold">
+          <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground shadow-lg border-0 px-3 py-1 text-sm font-semibold z-20">
             <i className="fas fa-star mr-1"></i>
             مميز
           </Badge>
         )}
-        <div className="absolute top-4 left-4">
-          <span className="bg-white/90 backdrop-blur-sm text-foreground px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute top-4 left-4 z-20">
+          <span className="bg-white/95 backdrop-blur-sm text-foreground px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
             {car.year}
           </span>
         </div>

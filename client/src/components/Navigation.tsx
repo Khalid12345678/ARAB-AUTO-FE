@@ -46,7 +46,7 @@ export function Navigation() {
           <Link href="/" className="flex items-center space-x-3">
             <div className="w-10 h-10">
               <img 
-                src="/assets/arabauto_logo_1756464535928.jpg" 
+                src="/arabauto_logo_1756464535928.jpg" 
                 alt="Arab Auto Logo" 
                 className="w-full h-full object-contain rounded-lg"
               />

@@ -1,54 +1,71 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Car } from "@shared/schema";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CarCard } from "@/components/CarCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Search, Filter, Grid, List } from "lucide-react";
 import { motion } from "framer-motion";
+import { cars, carBrands, priceRanges, fuelTypes, filterCars } from "@/data/cars";
 
 export default function CarListings() {
-  const { t } = useLanguage();
-  const [filters, setFilters] = useState({
-    brand: 'all',
-    priceRange: 'all',
-    year: 'all',
-  });
+  const { t, language } = useLanguage();
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState<string>('');
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string>('');
+  const [selectedFuelType, setSelectedFuelType] = useState<string>('');
+  
+  // Use static cars data instead of API call
+  const [filteredCars, setFilteredCars] = useState(cars);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { data: cars, isLoading } = useQuery<Car[]>({
-    queryKey: ['/api/cars'],
-  });
+  useEffect(() => {
+    let currentCars = cars;
 
-  const filteredCars = cars?.filter((car) => {
-    if (filters.brand !== 'all' && car.brand.toLowerCase() !== filters.brand.toLowerCase()) {
-      return false;
+    if (selectedBrand) {
+      currentCars = currentCars.filter(car => car.brand.toLowerCase() === selectedBrand.toLowerCase());
     }
-    
-    if (filters.priceRange !== 'all') {
-      const price = car.price;
-      switch (filters.priceRange) {
-        case 'low':
-          if (price >= 40000) return false;
-          break;
-        case 'mid':
-          if (price < 40000 || price >= 60000) return false;
-          break;
-        case 'high':
-          if (price < 60000) return false;
-          break;
-      }
-    }
-    
-    if (filters.year !== 'all' && car.year.toString() !== filters.year) {
-      return false;
-    }
-    
-    return car.isAvailable;
-  });
 
-  const brands = cars ? Array.from(new Set(cars.map(car => car.brand))) : [];
+    if (selectedPriceRange && selectedPriceRange !== 'all') {
+      currentCars = currentCars.filter(car => {
+        const price = car.price;
+        switch (selectedPriceRange) {
+          case 'low':
+            return price <= 40000;
+          case 'mid':
+            return price > 40000 && price <= 60000;
+          case 'high':
+            return price > 60000;
+          default:
+            return true;
+        }
+      });
+    }
+
+    if (selectedFuelType && selectedFuelType !== 'all') {
+      currentCars = currentCars.filter(car => car.fuelType.toLowerCase() === selectedFuelType.toLowerCase());
+    }
+
+    if (searchTerm) {
+      currentCars = currentCars.filter(car =>
+        car.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        car.year.toString().includes(searchTerm.toLowerCase()) ||
+        car.price.toString().includes(searchTerm.toLowerCase()) ||
+        car.fuelType.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredCars(currentCars);
+  }, [selectedBrand, selectedPriceRange, selectedFuelType, searchTerm]);
+
+  const brands = carBrands;
+  const priceRangesOptions = priceRanges;
+  const fuelTypesOptions = fuelTypes;
 
   return (
     <div className="py-24 bg-gradient-to-br from-background via-secondary/20 to-background">
@@ -90,7 +107,7 @@ export default function CarListings() {
                   <Label htmlFor="brand-filter" className="block text-sm font-medium mb-2">
                     {t('listings.filters.brand')}
                   </Label>
-                  <Select value={filters.brand} onValueChange={(value) => setFilters(prev => ({ ...prev, brand: value }))}>
+                  <Select value={selectedBrand} onValueChange={(value) => setSelectedBrand(value)}>
                     <SelectTrigger data-testid="select-filter-brand">
                       <SelectValue />
                     </SelectTrigger>
@@ -107,45 +124,46 @@ export default function CarListings() {
                   <Label htmlFor="price-filter" className="block text-sm font-medium mb-2">
                     {t('listings.filters.price')}
                   </Label>
-                  <Select value={filters.priceRange} onValueChange={(value) => setFilters(prev => ({ ...prev, priceRange: value }))}>
+                  <Select value={selectedPriceRange} onValueChange={(value) => setSelectedPriceRange(value)}>
                     <SelectTrigger data-testid="select-filter-price">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">{t('listings.filters.all')} Prices</SelectItem>
-                      <SelectItem value="low">$20,000 - $40,000</SelectItem>
-                      <SelectItem value="mid">$40,000 - $60,000</SelectItem>
-                      <SelectItem value="high">$60,000+</SelectItem>
+                      {priceRangesOptions.map(pr => (
+                        <SelectItem key={pr.value} value={pr.value}>{pr.label}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
                 
                 <div>
-                  <Label htmlFor="year-filter" className="block text-sm font-medium mb-2">
-                    {t('listings.filters.year')}
+                  <Label htmlFor="fuel-type-filter" className="block text-sm font-medium mb-2">
+                    {t('listings.filters.fuelType')}
                   </Label>
-                  <Select value={filters.year} onValueChange={(value) => setFilters(prev => ({ ...prev, year: value }))}>
-                    <SelectTrigger data-testid="select-filter-year">
+                  <Select value={selectedFuelType} onValueChange={(value) => setSelectedFuelType(value)}>
+                    <SelectTrigger data-testid="select-filter-fuel-type">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t('listings.filters.all')} Years</SelectItem>
-                      <SelectItem value="2024">2024</SelectItem>
-                      <SelectItem value="2023">2023</SelectItem>
-                      <SelectItem value="2022">2022</SelectItem>
+                      <SelectItem value="all">{t('listings.filters.all')} Fuel Types</SelectItem>
+                      {fuelTypesOptions.map(ft => (
+                        <SelectItem key={ft.value} value={ft.value}>{ft.label}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
                 
-                <div className="flex items-end">
-                  <Button 
-                    className="w-full h-12 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" 
-                    onClick={() => {/* Filter logic already applied via state */}}
-                    data-testid="button-apply-filters"
-                  >
-                    <i className="fas fa-filter mr-2"></i>
-                    {t('listings.filters.apply')}
-                  </Button>
+                <div>
+                  <Label htmlFor="search-input" className="block text-sm font-medium mb-2">
+                    {t('listings.filters.search')}
+                  </Label>
+                  <Input
+                    placeholder={t('listings.filters.searchPlaceholder')}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    data-testid="input-search"
+                  />
                 </div>
               </div>
             </CardContent>
