@@ -11,7 +11,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main className="pt-16">
+      <main className="pt-20">
         {children}
       </main>
       
@@ -21,13 +21,17 @@ export function Layout({ children }: LayoutProps) {
           <div className="grid md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <i className="fas fa-car text-primary-foreground text-lg"></i>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-12 h-12">
+                  <img 
+                    src="@assets/arabauto_logo_1756464064911.jpg" 
+                    alt="Arab Auto Logo" 
+                    className="w-full h-full object-contain rounded-lg"
+                  />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold">ARAB AUTO</h1>
-                  <p className="text-xs text-background/70">{t('home.hero.tagline')}</p>
+                  <h1 className="text-xl font-display font-bold">ARAB AUTO</h1>
+                  <p className="text-sm text-background/70 luxury-tracking">{t('home.hero.tagline')}</p>
                 </div>
               </div>
               <p className="text-background/70 text-sm">

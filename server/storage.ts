@@ -230,7 +230,16 @@ export class MemStorage implements IStorage {
     const car: Car = { 
       ...insertCar, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      description: insertCar.description || null,
+      descriptionAr: insertCar.descriptionAr || null,
+      images: insertCar.images || [],
+      features: insertCar.features || [],
+      featuresAr: insertCar.featuresAr || [],
+      isFeatured: insertCar.isFeatured || false,
+      isAvailable: insertCar.isAvailable || true,
+      mileage: insertCar.mileage || 0,
+      drivetrain: insertCar.drivetrain || null
     };
     this.cars.set(id, car);
     return car;
@@ -241,7 +250,10 @@ export class MemStorage implements IStorage {
     const inquiry: ContactInquiry = { 
       ...insertInquiry, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      phone: insertInquiry.phone || null,
+      interestedIn: insertInquiry.interestedIn || null,
+      message: insertInquiry.message || null
     };
     this.contactInquiries.set(id, inquiry);
     return inquiry;

@@ -68,6 +68,7 @@ export default {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
+        display: ["var(--font-display)"],
         arabic: ["Noto Sans Arabic", "sans-serif"],
       },
       keyframes: {

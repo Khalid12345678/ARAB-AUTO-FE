@@ -6,13 +6,16 @@ export function LanguageToggle() {
 
   return (
     <Button
-      variant="secondary"
+      variant="outline"
       size="sm"
       onClick={toggleLanguage}
       data-testid="button-language-toggle"
-      className="font-medium"
+      className="font-semibold px-4 py-2 border-2 border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-300 rounded-xl premium-hover"
     >
-      {language === 'en' ? 'AR' : 'EN'}
+      <span className="flex items-center space-x-2">
+        <i className="fas fa-globe text-sm"></i>
+        <span>{language === 'en' ? 'العربية' : 'English'}</span>
+      </span>
     </Button>
   );
 }

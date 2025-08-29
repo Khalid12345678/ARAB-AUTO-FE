@@ -1,40 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(215, 28%, 17%);
+  --background: hsl(0, 0%, 99%);
+  --foreground: hsl(215, 30%, 15%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(215, 28%, 17%);
+  --card-foreground: hsl(215, 30%, 15%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(215, 28%, 17%);
-  --primary: hsl(355, 87%, 47%);
+  --popover-foreground: hsl(215, 30%, 15%);
+  --primary: hsl(355, 89%, 52%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(215, 28%, 17%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(215, 30%, 15%);
   --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215, 20%, 65%);
-  --accent: hsl(45, 93%, 58%);
-  --accent-foreground: hsl(215, 28%, 17%);
+  --muted-foreground: hsl(215, 25%, 55%);
+  --accent: hsl(45, 95%, 60%);
+  --accent-foreground: hsl(215, 30%, 15%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(214, 32%, 91%);
+  --border: hsl(214, 32%, 90%);
   --input: hsl(214, 32%, 91%);
-  --ring: hsl(355, 87%, 47%);
-  --radius: 12px;
+  --ring: hsl(355, 89%, 52%);
+  --radius: 16px;
   
-  /* Custom properties for Arab Auto theme */
-  --arab-red: hsl(355, 87%, 47%);
-  --arab-red-dark: hsl(355, 87%, 35%);
-  --arab-pattern-overlay: hsl(0, 0%, 0%, 0.2);
+  /* Enhanced Arab Auto theme */
+  --arab-red: hsl(355, 89%, 52%);
+  --arab-red-dark: hsl(355, 89%, 42%);
+  --arab-red-light: hsl(355, 89%, 96%);
+  --arab-gold: hsl(45, 95%, 60%);
+  --arab-gold-dark: hsl(45, 95%, 50%);
+  --arab-pattern-overlay: hsl(0, 0%, 0%, 0.15);
+  --luxury-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+  --premium-gradient: linear-gradient(135deg, var(--arab-red) 0%, var(--arab-red-dark) 100%);
   
-  /* Typography */
+  /* Premium Typography */
   --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
-  --font-serif: Georgia, serif;
-  --font-mono: Menlo, monospace;
+  --font-display: 'Playfair Display', 'Noto Sans Arabic', serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 .dark {
@@ -75,47 +80,124 @@
 
 @layer components {
   .hero-gradient {
-    background: linear-gradient(135deg, var(--arab-red) 0%, var(--arab-red-dark) 100%);
+    background: var(--premium-gradient);
+    position: relative;
+  }
+
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   .glass-effect {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .premium-glass {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--luxury-shadow);
   }
 
   .car-card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+    backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .premium-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .luxury-border {
+    border: 2px solid;
+    border-image: linear-gradient(45deg, var(--arab-red), var(--arab-gold), var(--arab-red)) 1;
   }
 
   .islamic-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 5.5-4.5 10-10 10s-10-4.5-10-10 4.5-10 10-10 10 4.5 10 10zm10 0c0 5.5-4.5 10-10 10s-10-4.5-10-10 4.5-10 10-10 10 4.5 10 10z'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M30 30l-10-10h20zM30 30l10-10v20zM30 30l10 10h-20zM30 30l-10 10v-20z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 60px 60px;
+  }
+
+  .premium-text {
+    background: var(--premium-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+
+  .luxury-logo {
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  }
+
+  .compact-nav {
+    height: 80px;
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
   }
 }
 
 @layer utilities {
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-slide-in {
-    animation: slideIn 0.5s ease-out;
+    animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-luxury-float {
+    animation: luxuryFloat 3s ease-in-out infinite;
   }
 
   .card-hover {
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--luxury-shadow);
+  }
+
+  .premium-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .premium-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(var(--arab-red), 0.15);
+  }
+
+  .compact-spacing {
+    letter-spacing: -0.025em;
+  }
+
+  .luxury-tracking {
+    letter-spacing: 0.05em;
   }
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -126,12 +208,40 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+@keyframes luxuryFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.4) 50%, 
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
 /* RTL specific adjustments */
