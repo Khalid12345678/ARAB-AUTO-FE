@@ -35,7 +35,7 @@ export default function Home() {
         >
           <div className="w-24 h-24 luxury-logo">
             <img 
-              src="@assets/arabauto_logo_1756464064911.jpg" 
+              src="@assets/arabauto_logo_1756464535928.jpg" 
               alt="Arab Auto Logo" 
               className="w-full h-full object-contain rounded-2xl shadow-2xl"
             />
